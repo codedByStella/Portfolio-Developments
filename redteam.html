@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>adversary-infra.toolkit — codedByStella</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMTIxNTFCIi8+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSJub25lIiBzdHJva2U9IiMyODJGMzkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjQiIHk9IjIzIiBmb250LWZhbWlseT0iJ0lCTSBQbGV4IE1vbm8nLCB1aS1tb25vc3BhY2UsIG1vbm9zcGFjZSIgZm9udC13ZWlnaHQ9IjYwMCIgZm9udC1zaXplPSIxNyIgZmlsbD0iIzVGRDRDNCI+Jmd0O188L3RleHQ+Cjwvc3ZnPgo=">
+<meta name="description" content="Operator environment hardening and verification toolkit for authorized red-team engagements. Built by codedByStella.">
+<meta property="og:title" content="adversary-infra.toolkit — codedByStella">
+<meta property="og:description" content="A fail-loud verification toolkit for red-team infrastructure — built for engagements where the target's detection stack fingerprints the environment itself.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12151B; --surface:#1B2028; --surface-hi:#212832; --border:#282F39;
+    --text:#E8EAED; --text-dim:#8B93A1; --text-faint:#525A66;
+    --teal:#5FD4C4; --amber:#E0A458; --red:#E2665B;
+    --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+    --sans:'IBM Plex Sans', -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.65; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .statusbar{border-bottom:1px solid var(--border); padding:12px 32px; display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); font-size:12px; color:var(--text-faint); flex-wrap:wrap; gap:8px;}
+  .statusbar .path{color:var(--amber);}
+  .statusbar a{border-bottom:1px solid transparent;}
+  .statusbar a:hover{border-bottom-color:var(--text-faint);}
+  .dot{display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--amber); box-shadow:0 0 6px var(--amber); margin-right:6px; animation:pulse 2.4s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:0.35;}}
+
+  .wrap{max-width:840px; margin:0 auto; padding:0 32px;}
+
+  .head{padding:80px 0 50px; border-bottom:1px solid var(--border);}
+  .status-tag{display:inline-flex; align-items:center; gap:7px; font-family:var(--mono); font-size:12px; color:var(--amber); border:1px solid rgba(224,164,88,0.35); background:rgba(224,164,88,0.06); padding:5px 12px; margin-bottom:24px;}
+  h1{font-family:var(--mono); font-weight:500; font-size:clamp(26px,4vw,38px); letter-spacing:-0.01em; margin-bottom:18px;}
+  .lede{font-size:17px; color:var(--text-dim); max-width:640px;}
+  .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:28px;}
+  .tag{font-family:var(--mono); font-size:11.5px; color:var(--text-dim); border:1px solid var(--border); padding:4px 10px;}
+
+  section{padding:52px 0; border-bottom:1px solid var(--border);}
+  section:last-of-type{border-bottom:none;}
+  .s-label{font-family:var(--mono); font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-faint); margin-bottom:20px; display:flex; align-items:center; gap:12px;}
+  .s-label .rule{flex:1; height:1px; background:var(--border);}
+  h2{font-family:var(--sans); font-size:22px; font-weight:600; margin-bottom:16px;}
+  p{color:var(--text-dim); margin-bottom:14px; max-width:680px;}
+  p strong{color:var(--text); font-weight:600;}
+
+  ul.feature-list{list-style:none; display:flex; flex-direction:column; gap:16px; margin-top:8px;}
+  ul.feature-list li{padding-left:24px; position:relative; color:var(--text-dim);}
+  ul.feature-list li::before{content:'▸'; position:absolute; left:0; color:var(--amber); font-family:var(--mono);}
+  ul.feature-list li strong{color:var(--text); font-weight:600; display:block; margin-bottom:3px; font-family:var(--mono); font-size:14px;}
+
+  .code{background:var(--surface); border:1px solid var(--border); padding:22px 24px; font-family:var(--mono); font-size:12.8px; color:var(--text-dim); overflow-x:auto; margin:18px 0; line-height:1.7; white-space:pre;}
+  .code .c1{color:var(--text-faint);}
+  .code .c2{color:var(--red);}
+  .code .c3{color:var(--amber);}
+  .code-label{font-family:var(--mono); font-size:11px; color:var(--text-faint); margin-bottom:8px; letter-spacing:0.04em;}
+
+  .notice{background:var(--surface); border:1px solid var(--border); border-left:2px solid var(--amber); padding:22px 26px; margin:24px 0;}
+  .notice p{margin-bottom:0; color:var(--text-dim); font-size:14px;}
+  .notice .n-label{font-family:var(--mono); font-size:11px; color:var(--amber); letter-spacing:0.06em; margin-bottom:8px; text-transform:uppercase;}
+
+  .result{background:var(--surface); border:1px solid var(--border); border-left:2px solid var(--amber); padding:24px 26px; margin-top:8px;}
+  .result p{margin-bottom:0; color:var(--text-dim);}
+
+  .redacted-banner{
+    position:relative;
+    height:200px;
+    background:#181209;
+    border:1px solid var(--border);
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:8px 0 32px;
+  }
+  .redacted-banner .rb-stripes{
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(135deg, rgba(224,164,88,0.14) 0 10px, transparent 10px 20px);
+  }
+  .redacted-banner .rb-content{
+    position:relative;
+    text-align:center;
+    transform:rotate(-4deg);
+  }
+  .redacted-banner .rb-main{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:38px;
+    letter-spacing:0.1em;
+    color:var(--amber);
+    text-shadow:0 0 24px rgba(224,164,88,0.25);
+  }
+  .redacted-banner .rb-sub{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-faint);
+    letter-spacing:0.05em;
+    margin-top:10px;
+  }
+
+  .crossref{border:1px dashed var(--border); padding:18px 22px; margin-top:28px; font-size:13.5px;}
+  .crossref .cr-label{font-family:var(--mono); font-size:11px; color:var(--text-faint); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;}
+  .crossref a{color:var(--amber); border-bottom:1px solid transparent;}
+  .crossref a:hover{border-bottom-color:var(--amber);}
+  .crossref p{margin:0; color:var(--text-dim); font-size:13.5px;}
+
+  footer{padding:56px 32px 70px; max-width:840px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-family:var(--mono); font-size:13px;}
+  footer a{color:var(--amber);}
+</style>
+</head>
+<body>
+
+  <div class="statusbar">
+    <div><a href="index.html">codedbystella@portfolio</a><span style="color:var(--border); margin:0 6px;">/</span><span class="path">adversary-infra.toolkit</span></div>
+    <div><span class="dot"></span>restricted</div>
+  </div>
+
+  <div class="wrap">
+    <div class="head">
+      <div class="status-tag">● RESTRICTED — available under signed engagement / NDA</div>
+      <h1>Operator environment hardening &amp; verification toolkit</h1>
+      <p class="lede">A red-team infrastructure toolkit for authorized engagements against anti-fraud, anti-bot, and detection-adjacent systems that fingerprint the operating environment itself — not just behavior on top of it.</p>
+      <div class="tags">
+        <span class="tag">PowerShell</span>
+        <span class="tag">VM hardening</span>
+        <span class="tag">network isolation</span>
+        <span class="tag">fail-loud verification</span>
+      </div>
+    </div>
+
+    <div class="wrap" style="padding:0;">
+      <div class="redacted-banner">
+        <div class="rb-stripes"></div>
+        <div class="rb-content">
+          <div class="rb-main">[ REDACTED ]</div>
+          <div class="rb-sub">nice try — the good stuff's under NDA, not under a &lt;script&gt; tag</div>
+        </div>
+      </div>
+      <div class="notice">
+        <div class="n-label">scope note</div>
+        <p>Full source is not published here. This page describes capability and verification logic for prospective clients evaluating red-team engagement scope — working evasion internals are provided under signed SOW, not as a public download.</p>
+      </div>
+    </div>
+
+    <section>
+      <div class="s-label"><span>overview</span><span class="rule"></span></div>
+      <p>Modern detection stacks — fraud platforms, anti-bot services, and some EDR-adjacent telemetry — increasingly fingerprint the <em>environment</em>, not just behavior: hypervisor artifacts, adapter OUIs, GPU device strings, install-date heuristics, and network egress consistency. A red-team engagement that doesn't account for this either gets trivially flagged, invalidating the test's realism, or burns engagement time rebuilding operator infrastructure by hand between runs.</p>
+      <p>This toolkit exists to let an authorized engagement start from a verified, audited operator baseline that simulates a real adversary's disposable infrastructure — instead of testing a client's detection stack against an obviously-a-VM lab box.</p>
+    </section>
+
+    <section>
+      <div class="s-label"><span>why this matters</span><span class="rule"></span></div>
+      <p>A red-team engagement is only worth the money if it's honest about difficulty. If the "attacker" infrastructure gets flagged in the first five minutes because it's a stock VM with default hardware strings, the client learns nothing about whether their <em>actual</em> detection logic works against a real adversary — they've just confirmed their tooling can catch a beginner's mistake. <strong>The value of environment hardening is that it removes the cheap tell, so whatever gets flagged (or doesn't) reflects the detection stack's real capability, not the tester's setup shortcuts.</strong></p>
+      <p>That matters commercially, not just technically: clients buying adversarial simulation are usually trying to answer one question — "would this stop a competent, resourced attacker?" — and an engagement built on a lab-obvious VM can't answer that question honestly. This toolkit is the pre-work that makes the rest of the engagement's findings mean something.</p>
+    </section>
+
+    <section>
+      <div class="s-label"><span>what it does</span><span class="rule"></span></div>
+      <ul class="feature-list">
+        <li><strong>Hardware identity layer</strong>Randomizes registry-exposed hardware strings — GPU descriptor, hardware profile GUID, simulated install date — that fingerprinting services commonly check as VM tells.</li>
+        <li><strong>Network layer</strong>Pairs VM-level network isolation with a proxy chain and an independently-verified kill switch, so a VPN/proxy failure can never leak the operator's real egress path mid-engagement.</li>
+        <li><strong>Fail-loud audit script</strong>A standalone PowerShell verification pass checks the environment against ~10 known fingerprinting vectors before it's used operationally — MAC OUI against known hypervisor prefixes, GPU descriptor, install-date age, DNS leak test, kill-switch test — and refuses to give a quiet pass; anything unconfirmed halts with an explicit <code>[CRITICAL]</code>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="s-label"><span>verification logic</span><span class="rule"></span></div>
+      <h2>The audit is the deliverable, not the evasion</h2>
+      <p>The part of this toolkit worth showing publicly is the verification discipline, not the randomization internals: every check either passes with evidence or fails loudly and stops the operator from proceeding. That's the same posture clients expect from any pre-engagement checklist — no silent assumptions, no "probably fine."</p>
+
+      <div class="code-label">fingerprint verification (illustrative excerpt)</div>
+      <div class="code">$vmwareOUIs = @(<span class="c3">'000C29'</span>, <span class="c3">'000569'</span>, <span class="c3">'001C14'</span>, <span class="c3">'005056'</span>)
+<span class="c2">if</span> ($vmwareOUIs -contains $oui) {
+    $macStatus = <span class="c3">'FAIL - VMware OUI detected'</span>; $flags += <span class="c3">'MAC'</span>
+}
+
+<span class="c2">if</span> ($gpuDesc -like <span class="c3">'*VMware*'</span> -or $gpuDesc -like <span class="c3">'*SVGA*'</span>) {
+    $gpuStatus = <span class="c3">'FAIL - VMware GPU exposed'</span>; $flags += <span class="c3">'GPU'</span>
+}
+
+<span class="c1"># ... network egress, DNS leak, kill-switch, and install-age checks</span>
+<span class="c1"># follow the same pattern: verify with evidence, or flag and halt.</span></div>
+
+      <p>The reason "fail loud" isn't optional here: a silently-passed check on this kind of infrastructure isn't just a bad test result, it's an operational exposure. A kill switch that quietly fails to actually kill the connection, or a DNS leak that goes unnoticed, can put the operator's real identity in a client's logs mid-engagement — which is a problem for the operator, the client's own audit trail, and the validity of everything the engagement concludes afterward. The audit script is built to never let that happen without an explicit, visible warning.</p>
+    </section>
+
+    <section style="border-bottom:none;">
+      <div class="s-label"><span>engagement notes</span><span class="rule"></span></div>
+      <div class="result">
+        <p>This capability is scoped and used exclusively within signed, authorized red-team/adversarial-simulation engagements — never against a target outside an agreed rules-of-engagement document. Available for review under NDA as part of a proposal or SOW discussion.</p>
+      </div>
+
+      <div class="crossref">
+        <div class="cr-label">same discipline, different domain</div>
+        <p>Fail-loud verification is the same posture running through every project on this site — <a href="osrs-evaluator.html">osrs-market-daemon</a> flags stale prices instead of trusting them, <a href="stellasnipes.html">StellaSnipes</a> routes unverifiable domains to review instead of guessing. This toolkit just applies the same rule where the stakes are an operator's identity instead of a trade recommendation.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <a href="media-engine.html">← media-engine.pipeline</a>
+    <a href="mailto:codedbystella@gmail.com">codedbystella@gmail.com</a>
+    <a href="index.html">back to index →</a>
+  </footer>
+
+</body>
+</html>
