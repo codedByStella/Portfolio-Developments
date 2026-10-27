@@ -1,0 +1,65 @@
+codedbystella@portfolio/stellaudits.engine
+online
+● ONLINE — Compliance & Risk Automation
+Website Compliance & Risk Audit Pipeline
+A modular audit engine that scans a business's live website across three risk categories — ADA/accessibility, SEO/discoverability, and security/liability — scores it transparently, and renders a client-ready PDF report. Includes an optional real-browser cross-check, a SQLite lead log with before/after diffing, and a CAN-SPAM-compliant outreach draft generator.
+
+Python
+BeautifulSoup
+Jinja2 / xhtml2pdf
+SQLite
+Google PageSpeed API
+architecture
+Every check is its own independently-testable module, orchestrated by one runner so the rest of the tool stays thin — the same separation that keeps a false positive in one check from corrupting the whole report.
+
+Modular check pipeline
+Accessibility, SEO, local-SEO, and security checks each live in their own module with a shared Finding data model, so the report generator never needs to know how a finding was produced.
+Graceful deeper detection
+An optional PageSpeed/Lighthouse pass cross-checks static findings against a real rendered page — color contrast, tap targets, Core Web Vitals. No API key configured? It degrades to a single informational note and the rest of the audit proceeds at full strength.
+JS-rendering awareness
+Detects when a page is likely a near-empty client-rendered shell and automatically downgrades the static structural findings that can't be trusted against it, instead of confidently reporting a false defect.
+Explainable scoring
+A flat, inspectable penalty model (High −15, Medium −7, Low −2) a business owner — or Stella, defending the number to a client — can see through end to end. Meta findings about the audit's own limitations never cost points.
+Lead tracking & diffing
+Every run lands in a local SQLite log with its score, grade, and a findings snapshot, so a repeat scan can show exactly what got resolved, what's new, and what's still open since last time.
+Compliant outreach drafting
+Generates a CAN-SPAM-compliant draft pitch alongside the PDF — never auto-sent, always reviewed by a human first, and it refuses to quietly omit the required mailing address.
+the problem
+Most automated site-audit tools fall into one of two traps: they guess with no admission of uncertainty, or they require a full headless-browser stack just to run once. Static HTML parsing is fast and honest about what it measured, but it can be flatly wrong against a JavaScript-rendered shell — reporting "no H1, no content" against a site that's actually fine once rendered is a false, credibility-damaging finding.
+
+The engineering challenge was building something fast enough to run by default, honest about the limits of that speed, and able to upgrade itself to a real browser measurement when one is available — without ever letting the audit's own uncertainty get scored as a strike against the client's site.
+
+engineering detail
+Scoring that doesn't penalize honesty
+An early real run against a JS-heavy site surfaced a concrete bug: the audit's own "site appears JavaScript-rendered" disclosure — a note about the tool's confidence, not a defect on the site — was eating 7 points from the score just for existing. The fix is a single flag on the shared Finding model.
+
+scoring.py — meta findings never cost points
+def compute_score(findings):
+    score = 100
+    for f in findings:
+        # is_meta findings are notices about the audit itself
+        # (JS-rendering caveat, "PageSpeed not run," etc.) --
+        # never a site defect, so they should never cost points.
+        if f.is_meta:
+            continue
+        score -= SEVERITY_PENALTY.get(f.severity, 0)
+    return max(0, min(100, score))
+The same discipline runs through the outreach-email generator: an is_meta finding is explicitly barred from being picked as a "hook" bullet in a cold pitch — true, but a bad look to sell as a reason to hire someone.
+
+status
+Active — used to generate real client-facing audits. Sample run below.
+
+33 / F
+SITE HEALTH SCORE
+7
+MEDIUM-PRIORITY
+9
+LOW-PRIORITY
+20
+TOTAL FINDINGS
+same discipline, different domain
+The honesty-about-uncertainty pattern here is the same one behind adversary-infra.toolkit's fail-loud verification. The "degrade gracefully, cross-check when possible" layering on the API dependency mirrors records-platform.cli.
+
+← companion.py.service
+codedbystella@gmail.com
+back to index →
