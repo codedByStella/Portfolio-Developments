@@ -7,3 +7,5 @@ Working alongside AI, we learned its failures, its intricacies, and its capabili
 What you're looking at isn't merely a collection of portfolio pieces. They are legitimate business applications—self-starter founding projects. Some are still deployed; some are retired with lessons learned.
 
 **[View the Live Portfolio Here](https://codedbystella.github.io/Portfolio/)**
+
+Source for all projects on this site is available on request, redacted to protect business-sensitive logic and, where applicable, third-party platform terms. Reach out at codedbystella@gmail.com — happy to walk through the code directly.
