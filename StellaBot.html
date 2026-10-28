@@ -107,7 +107,7 @@ body{padding-bottom:78px}.tech-sticky{position:fixed;z-index:20;left:0;right:0;b
 
     <section>
       <div class="s-label"><span>the problem</span><span class="rule"></span></div>
-      <p>Many chat interfaces are centered on the current exchange. StellaBot explores a different model: preserving selected context in SQLite and JSON, combining it with desktop and visual information, and using it to inform later conversations.</p>
+      <p>Most chat sessions start with the latest message. StellaBot can also retrieve selected memories and preferences, along with desktop and visual context, before sending a request to the model. The application stores that context locally in SQLite and JSON.</p>
       <p>The design separates fast local context collection from slower model requests. That helps keep desktop observation and state updates distinct from conversation generation, while the initiative logic is intended to avoid repeated unanswered interruptions.</p>
     </section>
 
@@ -131,7 +131,7 @@ reply = ask_agent(..., initiative=<span class="c3">True</span>)
 <span class="c2">if</span> <span class="c3">"[QUIET]"</span> <span class="c2">in</span> reply:
     <span class="c2">continue</span></div>
 
-      <p>The reason this matters: an agent that can initiate but never checks whether it already tried and was ignored isn't "proactive," it's just noisy. The backoff is what keeps an always-on co-pilot from becoming something you have to mute.</p>
+      <p>Without a backoff limit, an always-on companion can keep interrupting after the user has stopped responding. StellaBot tracks unanswered initiatives and returns to quiet observation after the configured limit.</p>
     </section>
 
     <section style="border-bottom:none;">
