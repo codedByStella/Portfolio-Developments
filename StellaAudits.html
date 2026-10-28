@@ -105,7 +105,7 @@
 
     <section>
       <div class="s-label"><span>what it helps with</span><span class="rule"></span></div>
-      <p>A website can lose visitors or trust because of issues that are easy to miss during a quick review. StellaAudits groups common problems into one report, so a business owner or developer can review the findings and decide what deserves attention first.</p>
+      <p>A quick website review can miss accessibility, search, or configuration problems. StellaAudits collects its checks in one report, with the evidence and severity beside each finding so the owner or developer can decide what to investigate first.</p>
       <ul class="feature-list">
         <li><strong>One readable report</strong>Accessibility, SEO, local search, and selected security checks use a shared finding format, then feed a PDF report instead of leaving the owner to sort through separate warning lists.</li>
         <li><strong>Graceful deeper detection</strong>An optional PageSpeed/Lighthouse pass cross-checks static findings against a real rendered page, color contrast, tap targets, Core Web Vitals. No API key configured? It degrades to a single informational note and the rest of the audit proceeds at full strength.</li>
@@ -119,7 +119,7 @@
     <section>
       <div class="s-label"><span>how it works</span><span class="rule"></span></div>
       <p>Most automated site-audit tools fall into one of two traps: they guess with no admission of uncertainty, or they require a full headless-browser stack just to run once. Static HTML parsing is fast and honest about <em>what</em> it measured, but it can be flatly wrong against a JavaScript-rendered shell, reporting "no H1, no content" against a site that's actually fine once rendered is a false, credibility-damaging finding.</p>
-      <p>The engineering challenge was building something fast enough to run by default, honest about the limits of that speed, and able to upgrade itself to a real browser measurement when one is available, without ever letting the audit's own uncertainty get scored as a strike against the client's site.</p>
+      <p>The scoring model separates site findings from notes about the audit itself. Static checks can run by default, while browser-based measurements add context when available. A limitation in the audit should not lower the client's score.</p>
     </section>
 
     <section>
