@@ -125,7 +125,7 @@ body{padding-bottom:78px}.tech-sticky{position:fixed;z-index:20;left:0;right:0;b
 
     <section>
       <div class="s-label"><span>why this matters</span><span class="rule"></span></div>
-      <p>The project demonstrates a general information-product pattern: <strong>collect frequently changing data, calculate comparable signals, filter weak candidates, and present the results in a format people can act on.</strong> Here, the domain was a game economy and the interface was Discord.</p>
+      <p>StellaFlips combined Grand Exchange prices, tax-aware profit estimates, and recent price trends in Discord so players could compare candidate flips without manually checking each item.</p>
       <p>The implementation is documented for Old School RuneScape item research. It was not a commercial trading platform, and its recommendations did not guarantee that a trade could be completed at the displayed price.</p>
     </section>
 
@@ -198,7 +198,7 @@ body{padding-bottom:78px}.tech-sticky{position:fixed;z-index:20;left:0;right:0;b
 
       <div class="crossref">
         <div class="cr-label">same discipline, different domain</div>
-        <p>The timeout-and-fallback logic that keeps this daemon running through a flaky API is the same pattern behind <a href="StellaSnipes.html">StellaSnipes'</a> resilience against slow third-party checks  -  and the hourly lock-and-refresh cycle here is the same "don't reshuffle for the sake of it" instinct behind <a href="StellaStudios.html">StellaStudios'</a> scheduled wake/publish cycle.</p>
+        <p>The hourly recommendation lock kept the list stable long enough for players to act on it, while item prices could refresh more frequently. The surviving version history documents this behavior; the source code is no longer available for a fresh review.</p>
       </div>
     </section>
   </div>
