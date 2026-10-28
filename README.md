@@ -1,11 +1,13 @@
-codedByStella Portfolio — AI-assisted, solo-developed.
+# codedByStella Portfolio
 
-Every project here was an attempt at a standalone business. We met MVP, we launched. We lived, we learned, we failed. We gained hard business know-how and learned every pitfall along the way.
+**AI-assisted, solo-developed.** I build and ship software with AI as a development partner. That means reviewing its output, arguing with bad suggestions, testing what it produces, and fixing the parts that do not hold up.
 
-Working alongside AI, we learned its failures, its intricacies, and its capabilities. This wasn't just copy-paste; this was constant, multi-week refinement with AI to flesh out an entire business application. It required knowing enough to direct the model, argue with it, and correct its course.
+The projects here started as attempts at standalone businesses. I built MVPs, launched them, and learned what worked and what did not. Some projects are still running; others are retired, but each taught me something about building and operating software.
 
-What you're looking at isn't merely a collection of portfolio pieces. They are legitimate business applications—self-starter founding projects. Some are still deployed; some are retired with lessons learned.
+AI helped with the work, but it did not remove the need to understand the systems. Getting useful results took weeks of iteration, clear direction, and enough technical knowledge to catch mistakes and push the implementation where it needed to go.
 
-**[View the Live Portfolio Here](https://codedbystella.github.io/Portfolio/)**
+These are working business applications, not mockups. The live portfolio includes examples of the tools and their output.
 
-Source for all projects on this site is available on request, redacted to protect business-sensitive logic and, where applicable, third-party platform terms. Reach out at codedbystella@gmail.com — happy to walk through the code directly.
+**[View the live portfolio](https://codedbystella.github.io/Portfolio/)**
+
+Source code is available on request. I redact business-sensitive logic and anything restricted by third-party platform terms. Email codedbystella@gmail.com if you want to discuss a project or walk through the code.
