@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StellaOpsec.toolkit — codedByStella</title>
+<title>StellaOpsec | Security Assessment Toolkit</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMTIxNTFCIi8+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSJub25lIiBzdHJva2U9IiMyODJGMzkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjQiIHk9IjIzIiBmb250LWZhbWlseT0iJ0lCTSBQbGV4IE1vbm8nLCB1aS1tb25vc3BhY2UsIG1vbm9zcGFjZSIgZm9udC13ZWlnaHQ9IjYwMCIgZm9udC1zaXplPSIxNyIgZmlsbD0iIzVGRDRDNCI+Jmd0O188L3RleHQ+Cjwvc3ZnPgo=">
 <meta name="description" content="Operator environment hardening and verification toolkit for authorized red-team engagements. Built by codedByStella.">
-<meta property="og:title" content="StellaOpsec.toolkit — codedByStella">
-<meta property="og:description" content="A fail-loud verification toolkit for red-team infrastructure — built for engagements where the target's detection stack fingerprints the environment itself.">
+<meta property="og:title" content="StellaOpsec.toolkit  -  codedByStella">
+<meta property="og:description" content="A fail-loud verification toolkit for red-team infrastructure  -  built for engagements where the target's detection stack fingerprints the environment itself.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -120,9 +120,9 @@
 
   <div class="wrap">
     <div class="head">
-      <div class="status-tag">● DORMANT — restricted toolkit, available under signed engagement / NDA</div>
-      <h1>Operator environment hardening &amp; verification toolkit</h1>
-      <p class="lede">A red-team infrastructure toolkit for authorized engagements against anti-fraud, anti-bot, and detection-adjacent systems that fingerprint the operating environment itself — not just behavior on top of it.</p>
+      <div class="status-tag">● PROTOTYPE · DORMANT</div>
+      <h1>Collect security findings into a reviewable report</h1>
+      <p class="lede">StellaOpsec is a modular PowerShell toolkit for collecting selected Windows, network, web, identity, event-log, and cloud configuration data. It organizes those observations into structured reports so an assessor can review what the available evidence does and does not establish.</p>
       <div class="tags">
         <span class="tag">PowerShell</span>
         <span class="tag">VM hardening</span>
@@ -136,40 +136,40 @@
         <div class="rb-stripes"></div>
         <div class="rb-content">
           <div class="rb-main">[ REDACTED ]</div>
-          <div class="rb-sub">nice try — the good stuff's under NDA, not under a &lt;script&gt; tag</div>
+          <div class="rb-sub">nice try  -  the good stuff's under NDA, not under a &lt;script&gt; tag</div>
         </div>
       </div>
       <div class="notice">
         <div class="n-label">scope note</div>
-        <p>Full source is not published here. This page describes capability and verification logic for prospective clients evaluating red-team engagement scope — working evasion internals are provided under signed SOW, not as a public download.</p>
+        <p>The public portfolio describes assessment areas and verification boundaries without publishing sensitive operational details. The project is a dormant prototype, not a currently offered security service or a comprehensive scanner.</p>
       </div>
     </div>
 
     <section>
       <div class="s-label"><span>overview</span><span class="rule"></span></div>
-      <p>Modern detection stacks — fraud platforms, anti-bot services, and some EDR-adjacent telemetry — increasingly fingerprint the <em>environment</em>, not just behavior: hypervisor artifacts, adapter OUIs, GPU device strings, install-date heuristics, and network egress consistency. A red-team engagement that doesn't account for this either gets trivially flagged, invalidating the test's realism, or burns engagement time rebuilding operator infrastructure by hand between runs.</p>
-      <p>This toolkit exists to let an authorized engagement start from a verified, audited operator baseline that simulates a real adversary's disposable infrastructure — instead of testing a client's detection stack against an obviously-a-VM lab box.</p>
+      <p>Security reviews often require information from several places: host configuration, network services, web response settings, identity systems, event logs, and cloud resource policies. Collecting these observations through separate scripts can make it harder to compare results or prepare a consistent handoff.</p>
+      <p>StellaOpsec explores a modular collection-and-reporting workflow. Individual modules gather selected configuration data, shared objects organize the results, and reporting utilities can produce HTML, JSON, CSV, and Excel outputs for human review.</p>
     </section>
 
     <section>
       <div class="s-label"><span>why this matters</span><span class="rule"></span></div>
-      <p>A red-team engagement is only worth the money if it's honest about difficulty. If the "attacker" infrastructure gets flagged in the first five minutes because it's a stock VM with default hardware strings, the client learns nothing about whether their <em>actual</em> detection logic works against a real adversary — they've just confirmed their tooling can catch a beginner's mistake. <strong>The value of environment hardening is that it removes the cheap tell, so whatever gets flagged (or doesn't) reflects the detection stack's real capability, not the tester's setup shortcuts.</strong></p>
-      <p>That matters commercially, not just technically: clients buying adversarial simulation are usually trying to answer one question — "would this stop a competent, resourced attacker?" — and an engagement built on a lab-obvious VM can't answer that question honestly. This toolkit is the pre-work that makes the rest of the engagement's findings mean something.</p>
+      <p>The practical goal is to make collected evidence easier to inspect and communicate. A structured report can help an assessor separate observed configuration from assumptions, identify gaps that need follow-up, and explain which checks were limited by permissions, dependencies, or missing data.</p>
+      <p>For a small team, the value is a repeatable starting point for selected checks and a more consistent reporting format. It does not replace expert interpretation, a full penetration test, or a dedicated cloud-security posture platform.</p>
     </section>
 
     <section>
       <div class="s-label"><span>what it does</span><span class="rule"></span></div>
       <ul class="feature-list">
-        <li><strong>Hardware identity layer</strong>Randomizes registry-exposed hardware strings — GPU descriptor, hardware profile GUID, simulated install date — that fingerprinting services commonly check as VM tells.</li>
+        <li><strong>Hardware identity layer</strong>Randomizes registry-exposed hardware strings  -  GPU descriptor, hardware profile GUID, simulated install date  -  that fingerprinting services commonly check as VM tells.</li>
         <li><strong>Network layer</strong>Pairs VM-level network isolation with a proxy chain and an independently-verified kill switch, so a VPN/proxy failure can never leak the operator's real egress path mid-engagement.</li>
-        <li><strong>Fail-loud audit script</strong>A standalone PowerShell verification pass checks the environment against ~10 known fingerprinting vectors before it's used operationally — MAC OUI against known hypervisor prefixes, GPU descriptor, install-date age, DNS leak test, kill-switch test — and refuses to give a quiet pass; anything unconfirmed halts with an explicit <code>[CRITICAL]</code>.</li>
+        <li><strong>Fail-loud audit script</strong>A standalone PowerShell verification pass checks the environment against ~10 known fingerprinting vectors before it's used operationally  -  MAC OUI against known hypervisor prefixes, GPU descriptor, install-date age, DNS leak test, kill-switch test  -  and refuses to give a quiet pass; anything unconfirmed halts with an explicit <code>[CRITICAL]</code>.</li>
       </ul>
     </section>
 
     <section>
       <div class="s-label"><span>verification logic</span><span class="rule"></span></div>
       <h2>The audit is the deliverable, not the evasion</h2>
-      <p>The part of this toolkit worth showing publicly is the verification discipline, not the randomization internals: every check either passes with evidence or fails loudly and stops the operator from proceeding. That's the same posture clients expect from any pre-engagement checklist — no silent assumptions, no "probably fine."</p>
+      <p>The key design principle is to distinguish an observation from a conclusion. A reachable port does not prove a service is vulnerable, a public-looking policy entry does not alone establish effective exposure, and an inventory result does not prove that a security control is working end to end.</p>
 
       <div class="code-label">fingerprint verification (illustrative excerpt)</div>
       <div class="code">$vmwareOUIs = @(<span class="c3">'000C29'</span>, <span class="c3">'000569'</span>, <span class="c3">'001C14'</span>, <span class="c3">'005056'</span>)
@@ -184,18 +184,18 @@
 <span class="c1"># ... network egress, DNS leak, kill-switch, and install-age checks</span>
 <span class="c1"># follow the same pattern: verify with evidence, or flag and halt.</span></div>
 
-      <p>The reason "fail loud" isn't optional here: a silently-passed check on this kind of infrastructure isn't just a bad test result, it's an operational exposure. A kill switch that quietly fails to actually kill the connection, or a DNS leak that goes unnoticed, can put the operator's real identity in a client's logs mid-engagement — which is a problem for the operator, the client's own audit trail, and the validity of everything the engagement concludes afterward. The audit script is built to never let that happen without an explicit, visible warning.</p>
+      <p>Assessment results can be incomplete when commands fail, required modules are missing, permissions are insufficient, or source data is unavailable. A dependable next version should represent each check as successful, failed, or incomplete, preserve relevant error context, and avoid presenting missing evidence as a clean result.</p>
     </section>
 
     <section style="border-bottom:none;">
       <div class="s-label"><span>engagement notes</span><span class="rule"></span></div>
       <div class="result">
-        <p>Currently dormant — not engaged on any active work. Scoped and used exclusively within signed, authorized red-team/adversarial-simulation engagements, never against a target outside an agreed rules-of-engagement document. Available for review under NDA as part of a proposal or SOW discussion.</p>
+        <p><strong>Status: prototype / dormant.</strong> The inspected source contains modules for Windows host inventory, network and web checks, credential-related configuration, event-log review, Active Directory, selected Google Cloud and Azure settings, finding generation, and report export. This does not establish broad environment coverage or successful end-to-end execution.</p>
       </div>
 
       <div class="crossref">
         <div class="cr-label">same discipline, different domain</div>
-        <p>Fail-loud verification is the same posture running through every project on this site — <a href="StellaFlips.html">StellaFlips</a> flags stale prices instead of trusting them, <a href="StellaSnipes.html">StellaSnipes</a> routes unverifiable domains to review instead of guessing. This toolkit just applies the same rule where the stakes are an operator's identity instead of a trade recommendation.</p>
+        <p>The next engineering priorities are safer CLI argument handling, accurate interpretation of configuration fields, PowerShell-version compatibility, explicit partial-failure states, and repeatable tests against representative systems. The emphasis is on making the existing checks more precise and dependable, not overstating what they prove.</p>
       </div>
     </section>
   </div>
@@ -206,5 +206,6 @@
     <a href="StellaBot.html">StellaBot.service →</a>
   </footer>
 
+<div class="tech-sticky"><span class="hint">WANT THE IMPLEMENTATION DETAILS?</span><a href="StellaOpsec-Technical.html">Read the technical review ↗</a></div>
 </body>
 </html>
