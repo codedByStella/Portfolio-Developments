@@ -329,9 +329,55 @@
 
   @media (max-width:720px){
     .proc{grid-template-columns:1fr; text-align:left;}
+    .credentials-inner{flex-direction:column; gap:18px; padding:20px;}
+    .credentials-list{min-width:0;}
     .proc-status{justify-self:start;}
     .proc-arrow{text-align:left;}
     .proc-thumb{width:100%; height:140px;}
+  }
+
+  /* ===== credentials ===== */
+  .credentials{
+    max-width:1080px;
+    margin:0 auto 72px;
+    padding:0 32px;
+  }
+  .credentials-inner{
+    border:1px solid var(--border);
+    background:var(--surface);
+    padding:22px 26px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:28px;
+  }
+  .credentials-copy{
+    max-width:680px;
+  }
+  .credentials-title{
+    font-family:var(--mono);
+    font-size:14px;
+    font-weight:600;
+    color:var(--text);
+    margin-bottom:6px;
+  }
+  .credentials-copy p{
+    color:var(--text-dim);
+    font-size:13.5px;
+  }
+  .credentials-list{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    min-width:260px;
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--text-dim);
+  }
+  .credentials-list span::before{
+    content:'✓';
+    color:var(--teal);
+    margin-right:9px;
   }
 
   /* ===== footer ===== */
@@ -497,6 +543,24 @@
     </a>
 
   </div>
+
+  <section class="credentials" aria-labelledby="credentials-heading">
+    <div class="section-label">
+      <span class="count">08</span>
+      <span class="rule"></span>
+      <span>education &amp; credentials</span>
+    </div>
+    <div class="credentials-inner">
+      <div class="credentials-copy">
+        <h2 class="credentials-title" id="credentials-heading">Foundational web development training</h2>
+        <p>Formal coursework is part of the background, not the headline. The projects above show how that foundation has been applied to larger systems and working tools.</p>
+      </div>
+      <div class="credentials-list" aria-label="Completed certificates">
+        <span>Responsive Web Design</span>
+        <span>JavaScript Algorithms and Data Structures (Legacy)</span>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <div class="fmono">
