@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StellaBot.service — codedByStella</title>
+<title>StellaBot | Persistent AI Desktop Companion</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMTIxNTFCIi8+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSJub25lIiBzdHJva2U9IiMyODJGMzkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjQiIHk9IjIzIiBmb250LWZhbWlseT0iJ0lCTSBQbGV4IE1vbm8nLCB1aS1tb25vc3BhY2UsIG1vbm9zcGFjZSIgZm9udC13ZWlnaHQ9IjYwMCIgZm9udC1zaXplPSIxNyIgZmlsbD0iIzVGRDRDNCI+Jmd0O188L3RleHQ+Cjwvc3ZnPgo=">
-<meta name="description" content="Autonomous desktop agent — a context-aware state machine with OS-level window tracking, visual context capture, and graceful degradation under API failure. Built by codedByStella.">
-<meta property="og:title" content="StellaBot.service — codedByStella">
-<meta property="og:description" content="A localized, multi-threaded AI agent that tracks foreground window activity, maintains short-term visual context, and initiates interaction based on idle thresholds — with strict retry logic and local state persistence.">
+<meta name="description" content="Autonomous desktop agent  -  a context-aware state machine with OS-level window tracking, visual context capture, and graceful degradation under API failure. Built by codedByStella.">
+<meta property="og:title" content="StellaBot.service  -  codedByStella">
+<meta property="og:description" content="A localized, multi-threaded AI agent that tracks foreground window activity, maintains short-term visual context, and initiates interaction based on idle thresholds  -  with strict retry logic and local state persistence.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -79,9 +79,9 @@
 
   <div class="wrap">
     <div class="head">
-      <div class="status-tag">● ONLINE — Local System Agent</div>
-      <h1>Autonomous Desktop Agent &amp; Context-Aware State Machine</h1>
-      <p class="lede">A localized, multi-threaded AI agent that operates natively on the host OS. It tracks foreground window activity via Win32 API hooks, maintains short-term visual context, and initiates autonomous interactions based on idle thresholds. Implements strict API retry logic, local SQLite state persistence, and a persistent TTS subprocess worker.</p>
+      <div class="status-tag">● ACTIVE DEVELOPMENT</div>
+      <h1>A desktop companion built around continuity</h1>
+      <p class="lede">StellaBot combines persistent memory, personalization, desktop context, visual-frame processing, speech output, and proactive conversation in one Python application. The goal is to make interactions build on previous sessions and relevant activity, rather than starting from zero each time.</p>
       <div class="tags">
         <span class="tag">Python</span>
         <span class="tag">Win32 API (ctypes)</span>
@@ -105,14 +105,14 @@
 
     <section>
       <div class="s-label"><span>the problem</span><span class="rule"></span></div>
-      <p>Most local AI assistants are stateless: they wait for a prompt, respond, and forget. They don't know what's happening on screen, they don't know if they're being ignored, and they crash if the upstream API hiccups.</p>
-      <p>The engineering challenge was building an agent that stays dormant, monitors visual context passively, and initiates interaction when appropriate — without becoming an annoying, resource-hogging monologue. That required a strict separation between "gathering context" (fast, local loops) and "generating thought" (slow, remote API calls).</p>
+      <p>Many chat interfaces are centered on the current exchange. StellaBot explores a different model: preserving selected context in SQLite and JSON, combining it with desktop and visual information, and using it to inform later conversations.</p>
+      <p>The design separates fast local context collection from slower model requests. That helps keep desktop observation and state updates distinct from conversation generation, while the initiative logic is intended to avoid repeated unanswered interruptions.</p>
     </section>
 
     <section>
       <div class="s-label"><span>engineering detail</span><span class="rule"></span></div>
       <h2>Initiative &amp; backoff</h2>
-      <p>The agent doesn't just react; it initiates. But it has to do so gracefully. The system tracks idle time and visual-state changes — if the screen state changes and settles, the agent is allowed to evaluate whether it should speak.</p>
+      <p>Proactive interaction is governed by idle-time and activity-state logic, including a cap on unanswered autonomous messages. These mechanisms are intended to let the companion back off when the user does not engage. Their presence in source code does not establish that every timing or interruption edge case has been validated.</p>
       <p>To prevent the agent from talking to itself endlessly, it implements a hard cap on unanswered autonomous messages. If the user doesn't reply, the agent backs off and returns to silent observation.</p>
 
       <div class="code-label">conceptual logic for autonomous backoff</div>
@@ -135,12 +135,12 @@ reply = ask_agent(..., initiative=<span class="c3">True</span>)
     <section style="border-bottom:none;">
       <div class="s-label"><span>status</span><span class="rule"></span></div>
       <div class="result">
-        <p>Active local deployment. Designed to run headless or with a minimal Tkinter GUI, acting as an always-on gaming co-pilot for desktop workflows.</p>
+        <p><strong>Active development.</strong> The inspected code includes memory and personalization, Windows desktop awareness, visual-context handling, conversation orchestration, Kokoro speech synthesis, and proactive initiative routines. Sustained operation and comprehensive end-to-end testing are constrained by model-inference costs and available local hardware. This review does not establish a continuously running production deployment.</p>
       </div>
 
       <div class="crossref">
         <div class="cr-label">same discipline, different domain</div>
-        <p>The Win32 context capture here uses the same "verify environment before acting" discipline as <a href="StellaOpsec.html">StellaOpsec.toolkit</a>. The timeout/fallback logic on API calls mirrors <a href="StellaSnipes.html">StellaSnipes.pipeline</a>.</p>
+        <p>The project is measured at 4,348 source lines across its project directory, excluding historical backups, environment directories, runtime state, logs, and model weights. This page describes inspected components and their static call relationships, not a guarantee that every behavior has been verified end to end.</p>
       </div>
     </section>
   </div>
@@ -151,5 +151,6 @@ reply = ask_agent(..., initiative=<span class="c3">True</span>)
     <a href="StellaAudits.html">StellaAudits.engine →</a>
   </footer>
 
+<div class="tech-sticky"><span class="hint">WANT THE IMPLEMENTATION DETAILS?</span><a href="StellaBot-Technical.html">Read the technical review ↗</a></div>
 </body>
 </html>
