@@ -149,14 +149,14 @@ body{padding-bottom:78px}.tech-sticky{position:fixed;z-index:20;left:0;right:0;b
 
     <section>
       <div class="s-label"><span>overview</span><span class="rule"></span></div>
-      <p>Security reviews often require information from several places: host configuration, network services, web response settings, identity systems, event logs, and cloud resource policies. Collecting these observations through separate scripts can make it harder to compare results or prepare a consistent handoff.</p>
-      <p>StellaOpsec explores a modular collection-and-reporting workflow. Individual modules gather selected configuration data, shared objects organize the results, and reporting utilities can produce HTML, JSON, CSV, and Excel outputs for human review.</p>
+      <p>A security review may involve Windows configuration, network services, web headers, identity settings, event logs, and cloud policies. Running separate scripts for each source makes the results harder to compare and hand off.</p>
+      <p>StellaOpsec uses separate PowerShell modules to collect selected configuration data, then combines the results into HTML, JSON, CSV, or Excel reports for review.</p>
     </section>
 
     <section>
       <div class="s-label"><span>why this matters</span><span class="rule"></span></div>
       <p>The practical goal is to make collected evidence easier to inspect and communicate. A structured report can help an assessor separate observed configuration from assumptions, identify gaps that need follow-up, and explain which checks were limited by permissions, dependencies, or missing data.</p>
-      <p>For a small team, the value is a repeatable starting point for selected checks and a more consistent reporting format. It does not replace expert interpretation, a full penetration test, or a dedicated cloud-security posture platform.</p>
+      <p>For a small team, the toolkit offers a repeatable way to run selected checks and prepare a consistent handoff. It does not replace expert interpretation, a penetration test, or a dedicated cloud-security platform.</p>
     </section>
 
     <section>
