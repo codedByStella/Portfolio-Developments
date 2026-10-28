@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>media-engine.pipeline — codedByStella</title>
+<title>stellastudios.pipeline — codedByStella</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMTIxNTFCIi8+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSJub25lIiBzdHJva2U9IiMyODJGMzkiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjQiIHk9IjIzIiBmb250LWZhbWlseT0iJ0lCTSBQbGV4IE1vbm8nLCB1aS1tb25vc3BhY2UsIG1vbm9zcGFjZSIgZm9udC13ZWlnaHQ9IjYwMCIgZm9udC1zaXplPSIxNyIgZmlsbD0iIzVGRDRDNCI+Jmd0O188L3RleHQ+Cjwvc3ZnPgo=">
 <meta name="description" content="Fully automated content production pipeline — generation, voice, music, subtitle sync, mastering, and scheduled publish. Built by codedByStella.">
-<meta property="og:title" content="media-engine.pipeline — codedByStella">
+<meta property="og:title" content="stellastudios.pipeline — codedByStella">
 <meta property="og:description" content="Chains three generative AI services into one finished, mastered, watermarked video with word-accurate subtitles — publishing itself on a daily unattended cycle.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,13 +26,13 @@
   .statusbar .path{color:var(--teal);}
   .statusbar a{border-bottom:1px solid transparent;}
   .statusbar a:hover{border-bottom-color:var(--text-faint);}
-  .dot{display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 6px var(--teal); margin-right:6px; animation:pulse 2.4s ease-in-out infinite;}
+  .dot{display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--text-faint); margin-right:6px;}
   @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:0.35;}}
 
   .wrap{max-width:840px; margin:0 auto; padding:0 32px;}
 
   .head{padding:80px 0 50px; border-bottom:1px solid var(--border);}
-  .status-tag{display:inline-flex; align-items:center; gap:7px; font-family:var(--mono); font-size:12px; color:var(--teal); border:1px solid rgba(95,212,196,0.35); background:rgba(95,212,196,0.06); padding:5px 12px; margin-bottom:24px;}
+  .status-tag{display:inline-flex; align-items:center; gap:7px; font-family:var(--mono); font-size:12px; color:var(--text-dim); border:1px solid var(--border); background:rgba(139,147,161,0.07); padding:5px 12px; margin-bottom:24px;}
   h1{font-family:var(--mono); font-weight:500; font-size:clamp(26px,4vw,38px); letter-spacing:-0.01em; margin-bottom:18px;}
   .lede{font-size:17px; color:var(--text-dim); max-width:640px;}
   .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:28px;}
@@ -94,13 +94,13 @@
 <body>
 
   <div class="statusbar">
-    <div><a href="index.html">codedbystella@portfolio</a><span style="color:var(--border); margin:0 6px;">/</span><span class="path">media-engine.pipeline</span></div>
-    <div><span class="dot"></span>online</div>
+    <div><a href="index.html">codedbystella@portfolio</a><span style="color:var(--border); margin:0 6px;">/</span><span class="path">stellastudios.pipeline</span></div>
+    <div><span class="dot"></span>dormant</div>
   </div>
 
   <div class="wrap">
     <div class="head">
-      <div class="status-tag">● ONLINE — scheduled daily cycle</div>
+      <div class="status-tag">● DORMANT — scheduled cycle currently paused</div>
       <h1>End-to-end automated content production pipeline</h1>
       <p class="lede">Orchestrates a chain of generative AI services — script/video, music, and voice — into a finished, mastered, watermarked video with synced subtitles, gated by a human review window before it publishes itself on a daily schedule.</p>
       <div class="tags">
@@ -212,20 +212,20 @@
     <section style="border-bottom:none;">
       <div class="s-label"><span>status</span><span class="rule"></span></div>
       <div class="result">
-        <p>Running on a daily 12:00 UTC wake cycle in production. The one-hour review hold is the only manual checkpoint — every other stage, from generation through publish, is fully unattended.</p>
+        <p>Currently dormant — the daily 12:00 UTC wake-and-publish cycle is paused. Built and validated end-to-end, from generation through the one-hour human review hold to publish; ready to resume on a new schedule or client brief.</p>
       </div>
 
       <div class="crossref">
         <div class="cr-label">same discipline, different domain</div>
-        <p>Gating publish behind a review window mirrors <a href="stellasnipes.html">StellaSnipes'</a> flagged-for-review queue for unverifiable domains — both treat "automated" and "unsupervised" as different things. The wake/dormant scheduling here is the same shape as <a href="osrs-evaluator.html">osrs-market-daemon's</a> hourly lock cycle: don't do expensive work more often than the situation actually calls for.</p>
+        <p>Gating publish behind a review window mirrors <a href="stellasnipes.html">StellaSnipes'</a> flagged-for-review queue for unverifiable domains — both treat "automated" and "unsupervised" as different things. The wake/dormant scheduling here is the same shape as <a href="stellaflips.html">StellaFlips'</a> hourly lock cycle: don't do expensive work more often than the situation actually calls for.</p>
       </div>
     </section>
   </div>
 
   <footer>
-    <a href="scraper.html">← records-platform.cli</a>
+    <a href="stellascrapes.html">← stellascrapes.cli</a>
     <a href="mailto:codedbystella@gmail.com">codedbystella@gmail.com</a>
-    <a href="redteam.html">adversary-infra.toolkit →</a>
+    <a href="stellaopsec.html">stellaopsec.toolkit →</a>
   </footer>
 
 </body>
